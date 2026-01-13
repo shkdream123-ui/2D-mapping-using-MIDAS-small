@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.depthrenderermidassmall.ui.theme.CameraActivity">
+
+    <!-- DepthView 커스텀 뷰 -->
+    <!--<com.example.depthrenderermidassmall.ui.theme.customview.DepthView
+        android:id="@+id/depthView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+    <!-- BottomSheet Layout -->
+    <LinearLayout
+        android:id="@+id/bottom_sheet_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        android:layout_gravity="bottom">
+
+        <TextureView
+            android:id="@+id/previewTextureView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+
+        <!-- 결과 텍스트 뷰들 -->
+        <TextView
+            android:id="@+id/detected_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item 1" />
+
+        <TextView
+            android:id="@+id/detected_item_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00%" />
+
+        <TextView
+            android:id="@+id/detected_item1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item 2" />
+
+        <TextView
+            android:id="@+id/detected_item1_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00%" />
+
+        <TextView
+            android:id="@+id/detected_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item 3" />
+
+        <TextView
+            android:id="@+id/detected_item2_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00%" />
+
+    </LinearLayout>
+
+</FrameLayout>

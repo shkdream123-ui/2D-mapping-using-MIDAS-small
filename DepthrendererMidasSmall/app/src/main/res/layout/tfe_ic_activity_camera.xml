@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!-- Fragment가 카메라 프리뷰 Surface를 넣을 container -->
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextureView
+            android:id="@+id/previewTextureView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/depthView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+        <Button
+            android:id="@+id/btn_send_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send Test Pattern"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:backgroundTint="#AA000000"
+            android:textColor="#FFFFFF"/>
+
+
+        <!-- DepthView: Activity가 직접 접근 -->
+        <!--<com.example.depthrenderermidassmall.ui.theme.customview.DepthView
+            android:id="@+id/depthView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>-->
+
+        <!-- BottomSheet 등 UI는 그대로 -->
+        <include
+            android:id="@+id/bottom_sheet_layout"
+            layout="@layout/tfe_ic_layout_bottom_sheet" />
+
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
