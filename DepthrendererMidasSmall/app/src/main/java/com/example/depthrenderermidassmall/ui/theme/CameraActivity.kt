@@ -29,6 +29,7 @@ abstract class CameraActivity : AppCompatActivity() {
 
     private lateinit var sensorManager: SensorManager
     private var gyroSensor: Sensor? = null
+    private var accelSensor: Sensor? = null
 
 
     abstract val layoutId: Int
@@ -51,8 +52,17 @@ abstract class CameraActivity : AppCompatActivity() {
         }
 
         gyroSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
+        accelSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
 
         gyroSensor?.let {
+            sensorManager.registerListener(
+                sensorListener,
+                it,
+                SensorManager.SENSOR_DELAY_GAME
+            )
+        }
+
+        accelSensor?.let {
             sensorManager.registerListener(
                 sensorListener,
                 it,
@@ -285,21 +295,39 @@ abstract class CameraActivity : AppCompatActivity() {
     }
 
     private val sensorListener = object : SensorEventListener {
+
         override fun onSensorChanged(event: SensorEvent) {
-            if (event.sensor.type == Sensor.TYPE_GYROSCOPE) {
-                val gyroZ = event.values[2]
-                val gyroX = event.values[0]
-                val gyroY = event.values[1]// rad/s
-                val timestamp = event.timestamp      // ns
 
-                Log.d("GyroTest", "X: $gyroX, Y: $gyroY, Z: $gyroZ, ts: $timestamp")
+            val timestamp = event.timestamp  // ns
 
-                sendGyro(gyroY, timestamp)
+            when (event.sensor.type) {
+
+                Sensor.TYPE_GYROSCOPE -> {
+                    val gyroX = event.values[0]
+                    val gyroY = event.values[1]
+                    val gyroZ = event.values[2]
+
+                    Log.d("GyroTest", "X:$gyroX Y:$gyroY Z:$gyroZ ts:$timestamp")
+
+                    // ⚠️ 기존 유지 (네가 yaw로 쓰는 축)
+                    sendGyro(gyroY, timestamp)
+                }
+
+                Sensor.TYPE_LINEAR_ACCELERATION -> {
+                    val accX = event.values[0]
+                    val accY = event.values[1]
+                    val accZ = event.values[2]
+
+                    Log.d("AccelTest", "X:$accX Y:$accY Z:$accZ ts:$timestamp")
+
+                    sendAccel(accX, accY, accZ, timestamp)
+                }
             }
         }
 
         override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
     }
+
 
     private fun sendGyro(gyroZ: Float, timestamp: Long) {
         backgroundHandler?.post {
@@ -320,6 +348,29 @@ abstract class CameraActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun sendAccel(ax: Float, ay: Float, az: Float, timestamp: Long) {
+        backgroundHandler?.post {
+            try {
+                val buffer = ByteBuffer
+                    .allocate(1 + 8 + 4 * 3)
+                    .order(ByteOrder.BIG_ENDIAN)
+                    .put(0x03)          // ★ accel packet
+                    .putLong(timestamp)
+                    .putFloat(ax)
+                    .putFloat(ay)
+                    .putFloat(az)
+                    .array()
+
+                outputStream?.let {
+                    it.write(buffer)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
 
     private fun compressBytes(data: ByteArray): ByteArray {
         Log.d("COMPRESS", "압축 전 크기: ${data.size} bytes")
