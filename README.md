@@ -111,7 +111,8 @@ Planned improvements include:
 
 Before point cloud realignment
 
-![ezgif-41cea2d0da9310ba](https://github.com/user-attachments/assets/24e2a863-dd62-4d30-9024-c3d945da75a6)
+![VideoProject2-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/0947e797-155c-4c0b-b31c-62f8fbdb5756)
+
 
 After point cloud realignment
 
