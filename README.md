@@ -109,5 +109,15 @@ Planned improvements include:
 
 ## **Current Result**
 
+Before point cloud realignment
+
+![ezgif-41cea2d0da9310ba](https://github.com/user-attachments/assets/24e2a863-dd62-4d30-9024-c3d945da75a6)
+
+After point cloud realignment
+
 ![mapping3-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/cd2d6df7-cef0-41be-96f2-89912b459c0e)
+
+Adding realignment helps sparse point cloud to come together and form a shape, but simple realignment without any sense of geometry is not enough to form a decent map.
+I am currently working on adding the perception of geometrical structure of the indoor environment to the Depth module, in order for the local point cloud to form a shape of the wall or corner.
+By doing this I am expecting the map to form in the shape of a more recognizable indoor environment.
 
