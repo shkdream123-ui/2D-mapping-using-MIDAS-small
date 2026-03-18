@@ -109,20 +109,25 @@ Planned improvements include:
 
 ## **Current Result**
 
-Before point cloud realignment
+### Before (Without Re-alignment)
+- Scattered point cloud
+- No structural consistency
 
 (Event_driven_MiDas_based_2Dmapping)
 
 ![VideoProject2-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/0947e797-155c-4c0b-b31c-62f8fbdb5756)
 
 
-After point cloud realignment
+### After (With Re-alignment)
+- Improved spatial consistency
+- Reduced noise and drift
 
 (Event_driven_MiDas_based_2Dmappint_v2)
 
 ![mapping3-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/cd2d6df7-cef0-41be-96f2-89912b459c0e)
 
 Adding realignment helps sparse point cloud to come together and form a shape, but simple realignment without any sense of geometry is not enough to form a decent map.
+Its safe to state that realignment does not generate structure, but stabilizes accumulated noise and drift.
 I am currently working on adding the perception of geometrical structure of the indoor environment to the Depth module, in order for the local point cloud to form a shape of the wall or corner.
 By doing this I am expecting the map to form in the shape of a more recognizable indoor environment.
 
