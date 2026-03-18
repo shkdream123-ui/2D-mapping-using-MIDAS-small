@@ -110,12 +110,14 @@ Planned improvements include:
 ## **Current Result**
 
 Before point cloud realignment
+
 (Event_driven_MiDas_based_2Dmapping)
 
 ![VideoProject2-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/0947e797-155c-4c0b-b31c-62f8fbdb5756)
 
 
 After point cloud realignment
+
 (Event_driven_MiDas_based_2Dmappint_v2)
 
 ![mapping3-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/cd2d6df7-cef0-41be-96f2-89912b459c0e)
